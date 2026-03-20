@@ -2,7 +2,7 @@
 #import "../components/tables.typ": x-header
 #import "../utils/translation.typ": translation
 
-#let make_unit_register() = {
+#let make-unit-register() = {
   context {
     let items = units-state.final()
     if items.len() > 0 {

@@ -1,23 +1,23 @@
 #import "@preview/hydra:0.6.1": hydra
 
 // import all document parts
-#import "sections/outlines.typ": make_other_outlines, make_outline, outline_styles
-#import "sections/bibliographic_description.typ": make_bibliographic_desc
-#import "sections/titlepage.typ": make_titlepage_internship, make_titlepage_content
-#import "sections/reading_guides.typ": make_reading_guides
-#import "sections/abbreviation_register.typ": make_abbreviation_register
-#import "sections/unit_register.typ": make_unit_register
-#import "sections/glossary.typ": make_glossary
-#import "sections/autorship_declaration.typ": make_autorship_declaration
-#import "sections/company_confirmation.typ": make_company_confirmation
-#import "sections/appendix.typ": make_appendix
+#import "sections/outlines.typ": make-other-outlines, make-outline, outline-styles
+#import "sections/bibliographic_description.typ": make-bibliographic-desc
+#import "sections/titlepage.typ": make-titlepage-internship, make-titlepage-content
+#import "sections/reading_guides.typ": make-reading-guides
+#import "sections/abbreviation_register.typ": make-abbreviation-register
+#import "sections/unit_register.typ": make-unit-register
+#import "sections/glossary.typ": make-glossary
+#import "sections/autorship_declaration.typ": make-autorship-declaration
+#import "sections/company_confirmation.typ": make-company-confirmation
+#import "sections/appendix.typ": make-appendix
 // import stylings
-#import "components/th-color.typ": th-color
+#import "components/th_color.typ": th-color
 #import "components/tables.typ"
 #import "components/infocard.typ": infocard
 #import "components/todo.typ": todo
-#import "components/unit.typ": define_unit, unit
-#import "components/abbreviation.typ": abbreviation, define_abbreviation
+#import "components/unit.typ": define-unit, unit
+#import "components/abbreviation.typ": abbreviation, define-abbreviation
 
 
 #let conf(
@@ -28,8 +28,8 @@
   internship: none,
   bibliography: none,
   language: "de",
-  reading_guides: none,
-  misc_pages: (),
+  reading-guides: none,
+  misc-pages: (),
   doc,
 ) = {
   // set documents language
@@ -92,14 +92,14 @@
   }
 
   // style all outlines (outline, table register, figure register, ...)
-  show: outline_styles
+  show: outline-styles
 
   // title page
   set page(footer: none)
   if titlepage == "internship" {
-    make_titlepage_internship(title: title, student: student, supervisor: supervisor, internship: internship)
+    make-titlepage-internship(title: title, student: student, supervisor: supervisor, internship: internship)
   } else if "content" in titlepage.keys() {
-    make_titlepage_content(page_content: titlepage.content)
+    make-titlepage-content(page-content: titlepage.content)
   }
 
   set page(
@@ -142,9 +142,9 @@
   show: tables.x-header
 
   // make bibliographic description(s)
-  if "bibliographic_description" in misc_pages {
-    for (lang, desc) in misc_pages.at("bibliographic_description") [
-      #make_bibliographic_desc(
+  if "bibliographic-description" in misc-pages {
+    for (lang, desc) in misc-pages.at("bibliographic-description") [
+      #make-bibliographic-desc(
         student: student,
         description: desc,
         language: lang,
@@ -153,21 +153,21 @@
   }
 
   // Table of (text-) contents, other contents are listed below text
-  make_outline()
+  make-outline()
 
-  if "reading_guides" in misc_pages {
-    make_reading_guides(reading_guides: misc_pages.at("reading_guides"))
+  if "reading-guides" in misc-pages {
+    make-reading-guides(reading-guides: misc-pages.at("reading-guides"))
   }
 
-  make_abbreviation_register()
+  make-abbreviation-register()
 
-  make_unit_register()
+  make-unit-register()
 
-  if "glossary" in misc_pages {
-    make_glossary(glossary: misc_pages.at("glossary"))
+  if "glossary" in misc-pages {
+    make-glossary(glossary: misc-pages.at("glossary"))
   }
 
-  [#metadata("before_doc") <before_doc>]
+  [#metadata("before-doc") <before-doc>]
 
   // the user written document text
   // set numbering and heading for main document
@@ -182,30 +182,30 @@
   // reset page counter to value before doc
   // to continue roman numerals where they were left off
   pagebreak(weak: true)
-  context counter(page).update(counter(page).at(<before_doc>).first() + 1)
+  context counter(page).update(counter(page).at(<before-doc>).first() + 1)
 
   set page(numbering: "I")
   set heading(numbering: none)
   show heading.where(level: 1): set heading(numbering: none)
 
   // List of Graphics, Tables, etc.
-  make_other_outlines(bibliography: bibliography)
+  make-other-outlines(bibliography: bibliography)
 
   // TODO: add AI declaration
 
-  if "authorship_declaration" in misc_pages {
-    make_autorship_declaration()
+  if "authorship-declaration" in misc-pages {
+    make-autorship-declaration()
   }
 
-  if "company_confirmation" in misc_pages {
-    make_company_confirmation()
+  if "company-confirmation" in misc-pages {
+    make-company-confirmation()
   }
 
   context counter(heading).update(0)
   set heading(numbering: "A.1")
   show heading: set heading(numbering: "A.1") 
 
-  if "appendix" in misc_pages {
-    make_appendix(misc_pages.at("appendix"))
+  if "appendix" in misc-pages {
+    make-appendix(misc-pages.at("appendix"))
   }
 }

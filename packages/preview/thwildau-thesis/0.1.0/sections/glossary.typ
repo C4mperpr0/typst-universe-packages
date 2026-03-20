@@ -1,6 +1,6 @@
 #import "../utils/translation.typ": translation
 
-#let make_glossary(glossary: ()) = {
+#let make-glossary(glossary: ()) = {
   pagebreak(weak: true)
   [= #translation("Glossary")]
   table(

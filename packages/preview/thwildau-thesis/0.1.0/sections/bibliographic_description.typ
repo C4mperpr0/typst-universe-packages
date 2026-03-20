@@ -1,6 +1,6 @@
 #import "../utils/translation.typ": translation
 
-#let make_bibliographic_desc(
+#let make-bibliographic-desc(
   student: none,
   description: none,
   language: none,
@@ -23,7 +23,7 @@
     12pt,
     [
       *Author:* #text(student.name) \
-      *Title:* #text(description.title_long) \
+      *Title:* #text(description.title-long) \
       *Metadata:* #text(description.metadata) \
       *Keywords:* #text(description.keywords)
     ],

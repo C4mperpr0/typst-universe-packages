@@ -1,12 +1,12 @@
 #import "../utils/translation.typ": translation
 
-#let make_outline() = {
+#let make-outline() = {
   pagebreak(weak: true)
 
   outline(title: translation("Table of contents"))
 }
 
-#let make_other_outlines(
+#let make-other-outlines(
   bibliography: none,
   units: none,
 ) = context {
@@ -66,7 +66,7 @@
   }
 }
 
-#let outline_styles(doc) = {
+#let outline-styles(doc) = {
   // style all outlines (outline, table register, figure register, ...)
   show outline.entry: it => {
     if it.level == 1 {

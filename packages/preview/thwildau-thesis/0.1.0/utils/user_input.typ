@@ -1,8 +1,8 @@
-#let user_input(
+#let user-input(
   var,
   path,
   example,
-  check_dict: true
+  check-dict: true
 ) = {
   assert(
     var != none,
@@ -20,9 +20,9 @@
   )
 
   // if given example is a dictionary, use recursion to check whole dictionary
-  if check_dict and type(example) == dictionary {
+  if check-dict and type(example) == dictionary {
     for key in example.keys() {
-      user_input(
+      user-input(
         var.at(key, default: none),
          path + "." + key,
          example.at(key),

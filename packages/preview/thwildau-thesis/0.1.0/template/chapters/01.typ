@@ -1,13 +1,5 @@
 #import "@preview/thwildau-thesis:0.1.0": (
-  abbreviation,
-  conf,
-  define_abbreviation,
-  define_unit,
-  infocard,
-  tables,
-  th-color,
-  todo,
-  unit,
+  abbreviation, conf, define-abbreviation, define-unit, infocard, tables, th-color, todo, unit,
 )
 
 // ---------- english ----------
@@ -21,10 +13,11 @@ While this template takes a lot of arguments for configuration, most of them are
 
 To configure the thwildau-thesis template, it first must be imported.
 #figure(
-  caption: [Import the template])[
+  caption: [Import the template],
+)[
   ```typst
   #import "@preview/thwildau-thesis:0.1.0": (
-    abbreviation, conf, define_abbreviation, define_unit, infocard, tables, th-color, todo, unit,
+    abbreviation, conf, define-abbreviation, define-unit, infocard, tables, th-color, todo, unit,
   ) // TH-Wildau template
 
   // template configuration
@@ -33,7 +26,7 @@ To configure the thwildau-thesis template, it first must be imported.
     )
   ```]
 
-Most of the options that can be defined in the config are related to specific pages, which are explained in #ref(<pages_en>). The only generic options are as follows:
+Most of the options that can be defined in the config are related to specific pages, which are explained in #ref(<pages-en>). The only generic options are as follows:
 
 #figure(
   caption: "Config options",
@@ -46,7 +39,7 @@ Most of the options that can be defined in the config are related to specific pa
 
     [#`language`],
     [#`"de"`],
-    [Sets the #link("https://typst.app/docs/reference/text/text#parameters-lang")[text language]. It also #link(<translation_en>)[translates] static text elements of this template.],
+    [Sets the #link("https://typst.app/docs/reference/text/text#parameters-lang")[text language]. It also #link(<translation-en>)[translates] static text elements of this template.],
 
     [#`bibliography`],
     [#`none`],
@@ -59,15 +52,17 @@ The full config could look something like this:
 #figure(caption: [Full template config example])[
   ```typst
   #show: conf.with(
-    // title of this thesis
+    // title of this tehsis
     title: "TH-Wildau Typst Template",
+    // type of title page
+    titlepage: "internship",
     // your info
     student: (
-      name: "Clara Fall",
+      name: "Carl Heinrich Bellgardt",
       matrnr: "12345678",
       subject: "Praxisintegrierender Bachelor Studiengang Telematik",
-      seminar_group: "T23",
-      semester: "4",
+      seminar-group: "T23",
+      semester: "5",
     ),
     // your supervisor
     supervisor: (
@@ -81,25 +76,34 @@ The full config could look something like this:
       period: "16.06.2025 bis 25.07.2025",
     ),
     // your bibliography file
-    bibliography: bibliography("bib.yaml"),
+    bibliography: bibliography("bib.yaml", style: "institute-of-electrical-and-electronics-engineers"),
     // language of this document
     language: "de",
-    // used for bibliographic description
-    description: (
-      german: (
-        title_long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
-        metadata: " ",
-        keywords: "Typst, Thesis, Template, TH-Wildau",
-        goal: [Erstellung eines neue Typst Projektes mit dem TH-Wildau Template.],
-        abstract: [In dieser Arbeit wird erklärt, wie das darin verwendete Typst-Template konfiguriert und angewendet werden kann.],
+    // generate various predefined pages
+    misc-pages: (
+      // used for bibliographic description
+      bibliographic-description: (
+        de: (
+          title-long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
+          metadata: " ",
+          keywords: "Typst, Thesis, Template, TH-Wildau",
+          goal: [Erstellung eines neue Typst Projektes mit dem TH-Wildau Template.],
+          abstract: [In dieser Arbeit wird erklärt, wie das darin verwendete Typst-Template konfiguriert und angewendet werden kann.],
+        ),
+        en: (
+          title-long: "TH-Wildau Typst template for thesis and intership.",
+          metadata: " ",
+          keywords: "Typst, Thesis, Template, TH-Wildau",
+          goal: [Creation of a new typst project with the TH-Wildau template.],
+          abstract: [This thesis aims to explain the process of installing, configuring and applying the TH-Wildau typst template.],
+        ),
       ),
-      english: (
-        title_long: "TH-Wildau Typst template for thesis and intership.",
-        metadata: " ",
-        keywords: "Typst, Thesis, Template, TH-Wildau",
-        goal: [Creation of a new typst project with the TH-Wildau template.],
-        abstract: [This thesis aims to explain the process of installing, configuring and apply the TH-Wildau typst template.],
-      ),
+      // add a reading guides page
+      reading-guides: [Für diese Arbeit ist grundlegendes Wissen über die Sprache Typst von Vorteil.#linebreak() For this template it is advised to first understand the basic concepts of the typst language.],
+      authorship-declaration: true,
+      company-confirmation: true,
+      glossary: (("Telematik", "Die Kombination aus Telekommunikation und Informatik"),),
+      appendix: include "chapters/appendix.typ",
     ),
   )
   ```] <conf-example-en>
@@ -117,7 +121,7 @@ Whenever the template needs a certain config parameter that was not specified by
      ─ @preview/thwildau-thesis:0.1.0/utils/user_input.typ:7:2
   ```]
 
-== Pages <pages_en>
+== Pages <pages-en>
 Besides the styling, this template also generates a bunch of pages around your thesis, including the header page, various outlines and the bibliography. Some of them are enabled by default and can be opped-out, while others need to be enabled manually.
 
 === Title page
@@ -135,20 +139,20 @@ This template offers a title page, but since the TH-Wildau might require you to 
 Notice that in the config, `titlepage` also takes the key `content`, which it then will render directly instead of the templates title page. Thus you can simply provide an empty page with your pdf title page as the filling background é voila you have the mandated title page. You can of course also insert any other typst `content`.
 
 === Bibliographic description
-The bibliographic description aims to give a brief explaination and categorisation of your thesis. You can supply information in multiple languages, but as only german and english translations for the template are supplied with it, you may need to #link(<translation_en>, [add your own translations]).
+The bibliographic description aims to give a brief explaination and categorisation of your thesis. You can supply information in multiple languages, but as only german and english translations for the template are supplied with it, you may need to #link(<translation-en>, [add your own translations]).
 #figure(caption: [Enable _bibliographic description_ page(s)])[
   ```typst
-  misc_pages: (
-    bibliographic_description: (
+  misc-pages: (
+    bibliographic-description: (
       de: (
-        title_long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
+        title-long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
         metadata: " ",
         keywords: "Typst, Thesis, Template, TH-Wildau",
         goal: [Erstellung eines neue Typst Projektes mit dem TH-Wildau Template.],
         abstract: [In dieser Arbeit wird erklärt, wie das darin verwendete Typst-Template konfiguriert und angewendet werden kann.],
       ),
       en: (
-        title_long: "TH-Wildau Typst template for thesis and intership.",
+        title-long: "TH-Wildau Typst template for thesis and intership.",
         metadata: " ",
         keywords: "Typst, Thesis, Template, TH-Wildau",
         goal: [Creation of a new typst project with the TH-Wildau template.],
@@ -162,8 +166,8 @@ The bibliographic description aims to give a brief explaination and categorisati
 With the _Notes to the reader_ page you can give your audience further context to help them understand your work.
 #figure(caption: [Enable _notes to the reader_ page])[
   ```typst
-  misc_pages: (
-    reading_guides: [your content]
+  misc-pages: (
+    reading-guides: [your content]
   )
   ```]
 
@@ -171,8 +175,8 @@ With the _Notes to the reader_ page you can give your audience further context t
 If you write your thesis as part of your work at an extern company, you may need to add a confirmation page, in which the company verifies your affiliation and work with them.
 #figure(caption: [Enable _company confirmation_ page])[
   ```typst
-  misc_pages: (
-    company_confirmation: true
+  misc-pages: (
+    company-confirmation: true
   )
   ```]
 
@@ -180,8 +184,8 @@ If you write your thesis as part of your work at an extern company, you may need
 To declare that your authorship of a thesis you can use this page. But depending on the current regulations you may instead be required to use an external form for that.
 #figure(caption: [Enable _declaration of authorship_ page])[
   ```typst
-  misc_pages: (
-    authorship_declaration: true
+  misc-pages: (
+    authorship-declaration: true
   )
   ```]
 
@@ -189,7 +193,7 @@ To declare that your authorship of a thesis you can use this page. But depending
 To attach text or figures to the document, that should not be part of the document directly or are only used partly (e.g. part of an image) in the document and you want to attach the full version, then the appendix is the place to put it.
 #figure(caption: [Add _appendix_])[
   ```typst
-  misc_pages: (
+  misc-pages: (
     appendix: #include "chapters/appendix.typ"
   )
   ```]
@@ -256,10 +260,10 @@ The two colors can be easily exchanged.
 )
 
 === Units
-You can define a unit like #define_unit("v", $"ms"$, "Velocity", "Vector unit") and then easily link to it from anywhere in the text like #unit("v"). }
+You can define a unit like #define-unit("v", $"ms"$, "Velocity", "Vector unit") and then easily link to it from anywhere in the text like #unit("v"). }
 
 === Abbreviations
-Abbreviations can be defined in a similar fashion to units. The abbreviation #define_abbreviation("M.A.", "Master of Arts") will link to the corresponding abbreviation's outline, which will be generated automatically. As with units, new links to #abbreviation("M.A.") can be created anywhere in the text. When making heavy use of this functionality, it is adviced to automatically replace all occurences in the text or at least to import the function with an alias, to not have to type out ```#abbreviation("TH")``` every single time.
+Abbreviations can be defined in a similar fashion to units. The abbreviation #define-abbreviation("M.A.", "Master of Arts") will link to the corresponding abbreviation's outline, which will be generated automatically. As with units, new links to #abbreviation("M.A.") can be created anywhere in the text. When making heavy use of this functionality, it is adviced to automatically replace all occurences in the text or at least to import the function with an alias, to not have to type out ```#abbreviation("TH")``` every single time.
 
 === Image
 Even though it is not part of this template and just plain typst, here is an image to complete the list of commonly used figures and to trigger the image's outline generation.
@@ -271,7 +275,7 @@ Even though it is not part of this template and just plain typst, here is an ima
 === ToDo
 Sometime, when writing, you might leave a notification for yourself, e.g. rework this chapter. Or you may use something like _Placeholder_ for a word that did not come to mind right away. But there is always the risk of this little piece of unfinished text to make it into the final text unnoticed. To prevent this from happening, the todo element is here to help you. Just wrap #todo[anything you want] into a todo and optionally leave a #todo(info: "note")[note] that will then appear above it. Not only are todos marked with a red backdrop, but they will also appear in a todos outline that is generated after the main text.
 
-== Language support <translation_en>
+== Language support <translation-en>
 The template has lots of static text elements, for example all headings that are not part of the thesis directly. To make this template work with multiple languages an uncoventional solution was used: The template uses the `/utils/translations.json` file to look up the correct translation. This might seem as a bad solution to most programmers, because it uses the text directly as the dictionary key, but it also makes the code more readable, because it the can contain the text that will actually be display (in english) instead of some arbitrary variable name.
 To add new languages though, there is no programming experience needed. Simply open `/utils/translations.json` in the template directory and add your language to every line needed. Then you can either use specific pages like the bibliographic description in that language or change it for your whole thesis directly. Just like for the config, the template will throw an error whenever a translation is missing. Thus you can also approach this, by only translating lines as needed, indicated by the errors.
 For example, the line `"Signature": {"de": "Unterschrift"}` can be changed to `"Signature": {"de": "Unterschrift", "eo": "Subskribo"}` to add esperanto translations.

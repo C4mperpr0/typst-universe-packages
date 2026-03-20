@@ -1,6 +1,6 @@
 #import "../utils/translation.typ": translation
 
-#let make_autorship_declaration() = {
+#let make-autorship-declaration() = {
   pagebreak(weak: true)
 
   // Declaration of independence

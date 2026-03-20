@@ -1,13 +1,5 @@
 #import "@preview/thwildau-thesis:0.1.0": (
-  conf,
-  tables,
-  infocard,
-  todo,
-  unit,
-  define_unit,
-  abbreviation,
-  define_abbreviation,
-  th-color,
+  abbreviation, conf, define-abbreviation, define-unit, infocard, tables, th-color, todo, unit,
 )
 
 // ---------- german ----------
@@ -23,10 +15,11 @@ Auf den ersten Blick mag die Anzahl der Argumente für dieses Template zwar nach
 
 Um das thwildau-thesis Template zu konfigurieren, muss es zuerst importiert werden.
 #figure(
-  caption: [Import the template])[
+  caption: [Import the template],
+)[
   ```typst
   #import "@preview/thwildau-thesis:0.1.0": (
-    abbreviation, conf, define_abbreviation, define_unit, infocard, tables, th-color, todo, unit,
+    abbreviation, conf, define-abbreviation, define-unit, infocard, tables, th-color, todo, unit,
   ) // TH-Wildau Template
 
   // Template Konfiguration
@@ -35,7 +28,7 @@ Um das thwildau-thesis Template zu konfigurieren, muss es zuerst importiert werd
     )
   ```]
 
-Die meisten Konfigurationsargumente hängen mit spezifischen Seiten oder Abschnitten des Templates zusammen. Diese werden in #ref(<pages_de>) erklärt. Die einzigen allgemeinen Argumente sind die Folgenden:
+Die meisten Konfigurationsargumente hängen mit spezifischen Seiten oder Abschnitten des Templates zusammen. Diese werden in #ref(<pages-de>) erklärt. Die einzigen allgemeinen Argumente sind die Folgenden:
 
 #figure(
   caption: "Konfigurationsargumente",
@@ -48,7 +41,7 @@ Die meisten Konfigurationsargumente hängen mit spezifischen Seiten oder Abschni
 
     [#`language`],
     [#`"de"`],
-    [Setzt die #link("https://typst.app/docs/reference/text/text#parameters-lang")[Sprache] des Texts. Kann außerdem statische Textelemente des Templates #link(<translation_de>)[übersetzen].],
+    [Setzt die #link("https://typst.app/docs/reference/text/text#parameters-lang")[Sprache] des Texts. Kann außerdem statische Textelemente des Templates #link(<translation-de>)[übersetzen].],
 
     [#`bibliography`],
     [#`none`],
@@ -61,17 +54,17 @@ Die komplette Konfiguration könnten dann beispielsweise so aussehen:
 #figure(caption: [Full template config example])[
   ```typst
   #show: conf.with(
-    // Titel der Thesis 
+    // Titel der Thesis
     title: "TH-Wildau Typst Template",
     // your info
     student: (
       name: "Clara Fall",
       matrnr: "12345678",
       subject: "Praxisintegrierender Bachelor Studiengang Telematik",
-      seminar_group: "T23",
+      seminar-group: "T23",
       semester: "4",
     ),
-    // Dein Betreuer 
+    // Dein Betreuer
     supervisor: (
       name: "Frau Dr. Lieschen Müller",
       mail: "mueller@beispielag.de",
@@ -86,28 +79,37 @@ Die komplette Konfiguration könnten dann beispielsweise so aussehen:
     bibliography: bibliography("bib.yaml"),
     // language of this document
     language: "de",
-    // Bibliographische Beschreibung
-    description: (
-      german: (
-        title_long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
-        metadata: " ",
-        keywords: "Typst, Thesis, Template, TH-Wildau",
-        goal: [Erstellung eines neue Typst Projektes mit dem TH-Wildau Template.],
-        abstract: [In dieser Arbeit wird erklärt, wie das darin verwendete Typst-Template konfiguriert und angewendet werden kann.],
+    // Generiere verschiedene vordefinierte Seiten
+    misc-pages: (
+      // Bibliographische Beschreibung
+      description: (
+        german: (
+          title-long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
+          metadata: " ",
+          keywords: "Typst, Thesis, Template, TH-Wildau",
+          goal: [Erstellung eines neue Typst Projektes mit dem TH-Wildau Template.],
+          abstract: [In dieser Arbeit wird erklärt, wie das darin verwendete Typst-Template konfiguriert und angewendet werden kann.],
+        ),
+        english: (
+          title-long: "TH-Wildau Typst template for thesis and intership.",
+          metadata: " ",
+          keywords: "Typst, Thesis, Template, TH-Wildau",
+          goal: [Creation of a new typst project with the TH-Wildau template.],
+          abstract: [This thesis aims to explain the process of installing, configuring and apply the TH-Wildau typst template.],
+        ),
       ),
-      english: (
-        title_long: "TH-Wildau Typst template for thesis and intership.",
-        metadata: " ",
-        keywords: "Typst, Thesis, Template, TH-Wildau",
-        goal: [Creation of a new typst project with the TH-Wildau template.],
-        abstract: [This thesis aims to explain the process of installing, configuring and apply the TH-Wildau typst template.],
-      ),
+      // Füge Leserhinweise an
+      reading-guides: [Für diese Arbeit ist grundlegendes Wissen über die Sprache Typst von Vorteil.#linebreak() For this template it is advised to first understand the basic concepts of the typst language.],
+      authorship-declaration: true,
+      company-confirmation: true,
+      glossary: (("Telematik", "Die Kombination aus Telekommunikation und Informatik"),),
+      appendix: include "chapters/appendix.typ",
     ),
   )
   ```] <conf-example-de>
 
 
-=== Fehlerbehandlung 
+=== Fehlerbehandlung
 Die gegebenen Konfigurationen werden vom Template automatisch auf ihre Vollständigkeit überprüft. Sollte eine obligatorische Angabe fehlen, so gibt der Typst Compiler einen Fehler aus. Am Anfang der Ausgabe befinden sich dabei genauere Informationen dazu, was genau fehlt. Im folgenden Beispiel fehlt bei dem set `student` die Angabe `matrnr`. In der Fehlermeldung ist auch ein Beispielwert gegeben. Das Beispiel `"12345678"` zeigt dabei auch, dass die fehlende Angabe vom Datentyp `string` sein kann.
 
 #figure(caption: [Konfigurations-Fehlerausgabe Beispiel])[
@@ -120,11 +122,11 @@ Die gegebenen Konfigurationen werden vom Template automatisch auf ihre Vollstän
   ```]
 
 
-== Seiten <pages_de>
+== Seiten <pages-de>
 Neben dem Styling erzeugt diese Vorlage automatisch eine Reihe zusätzlicher Seiten rund um deine Arbeit, darunter die Titelseite, verschiedene Inhaltsverzeichnisse und das Literaturverzeichnis. Einige davon sind standardmäßig aktiviert, können aber deaktiviert werden, während andere manuell hinzugefügt werden müssen.
 
-=== Titelseite 
-Dieses Template bietet auch eine Titelseite, aber da je nach aktueller Regelung ein Deckblatt von der TH-Wildau vorgegeben wird, kann die Titelseite auch durch etwas anderes ersetzt werden. Das Deckblatt des Templates ist also eher für andere Belegarbeiten, welche ebenfalls in einem wissenschaftlichen Stil verfasst werden sollen. 
+=== Titelseite
+Dieses Template bietet auch eine Titelseite, aber da je nach aktueller Regelung ein Deckblatt von der TH-Wildau vorgegeben wird, kann die Titelseite auch durch etwas anderes ersetzt werden. Das Deckblatt des Templates ist also eher für andere Belegarbeiten, welche ebenfalls in einem wissenschaftlichen Stil verfasst werden sollen.
 Im folgenden Beispiel wird die Titelseite durch eine externe, einseitige PDF ersetzt.
 #figure(caption: [Replace title page])[
   ```typst
@@ -138,21 +140,21 @@ Im folgenden Beispiel wird die Titelseite durch eine externe, einseitige PDF ers
   ```]
 Das funktioniert, da `titlepage` auch direkt typst `content` als Wert akzeptiert. Dieser wird dann einfach anstelle der Titelseite eingefügt. In diesem Fall ist der gegebene `content` eine leere Seite, mit dem PDF-Deckblatt als füllenden Hintergrund.
 
-=== Bibliographische Beschreibung 
-Die bibliographische Beschreibung gibt einen groben Überblick über den Inhalt deiner Thesis und dient auch der Kategorisierung selbiger. Sie kann für mehrere Sprachen generiert werden, indem einfach mehrere Sprachen mit dafür in der Konfiguration definiert werden. Jedoch ist dafür auch eine Übersetzung der statischen Textelemente der Seite nötig, wobei das Template selbst nur die Sprachen Deutsch und Englisch mitbringt. Für weitere Sprachen muss Text also #link(<translation_de>, [selbst übersetzt]) werden.
+=== Bibliographische Beschreibung
+Die bibliographische Beschreibung gibt einen groben Überblick über den Inhalt deiner Thesis und dient auch der Kategorisierung selbiger. Sie kann für mehrere Sprachen generiert werden, indem einfach mehrere Sprachen mit dafür in der Konfiguration definiert werden. Jedoch ist dafür auch eine Übersetzung der statischen Textelemente der Seite nötig, wobei das Template selbst nur die Sprachen Deutsch und Englisch mitbringt. Für weitere Sprachen muss Text also #link(<translation-de>, [selbst übersetzt]) werden.
 #figure(caption: [Enable _bibliographic description_ page(s)])[
   ```typst
-  misc_pages: (
-    bibliographic_description: (
+  misc-pages: (
+    bibliographic-description: (
       de: (
-        title_long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
+        title-long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
         metadata: " ",
         keywords: "Typst, Thesis, Template, TH-Wildau",
         goal: [Erstellung eines neue Typst Projektes mit dem TH-Wildau Template.],
         abstract: [In dieser Arbeit wird erklärt, wie das darin verwendete Typst-Template konfiguriert und angewendet werden kann.],
       ),
       en: (
-        title_long: "TH-Wildau Typst template for thesis and intership.",
+        title-long: "TH-Wildau Typst template for thesis and intership.",
         metadata: " ",
         keywords: "Typst, Thesis, Template, TH-Wildau",
         goal: [Creation of a new typst project with the TH-Wildau template.],
@@ -162,38 +164,38 @@ Die bibliographische Beschreibung gibt einen groben Überblick über den Inhalt 
   )
   ```]
 
-=== Hinweise zum Lesen der Arbeit 
+=== Hinweise zum Lesen der Arbeit
 Mit den _Hinweisen zum Lesen der Arbeit_ kannst du deinen Lesern weiteren Kontext bieten, um deine Thesis zu verstehen.
 #figure(caption: [_Hinweise zum Lesen der Arbeit_ hinzufügen])[
   ```typst
-  misc_pages: (
-    reading_guides: [Dein Text]
+  misc-pages: (
+    reading-guides: [Dein Text]
   )
   ```]
 
-=== Bestätigung des Praxisunternehmens 
+=== Bestätigung des Praxisunternehmens
 Solltest du deine Thesis bei einem externen Unternehmen schreiben oder das Template für einen Praxisbelegsbericht verwenden, so wird möglicherweise auch die Bestätigung des Praxisunternehmens von deiner Arbeit gefordert.
 #figure(caption: [_Bestätigung des Praxisunternehmens_ hinzufügen])[
   ```typst
-  misc_pages: (
-    company_confirmation: true
+  misc-pages: (
+    company-confirmation: true
   )
   ```]
 
-=== Selbstständigkeitserklärung 
+=== Selbstständigkeitserklärung
 Um zu bestätigen, dass du der Autor deiner Thesis bist, kann die im Template enthaltene _Selbstständigkeitserklärung_ Teil deiner Arbeit sein. Je nach aktueller Regelung wird jedoch auch ein externes Formular dafür verwendet.
 #figure(caption: [_Selbstständigkeitserklärung_ Hinzufügen])[
   ```typst
-  misc_pages: (
-    authorship_declaration: true
+  misc-pages: (
+    authorship-declaration: true
   )
   ```]
 
-=== Anhang 
+=== Anhang
 Der Anhang ist ein Abschnitt am Ende der Arbeit für Texte oder Abbildungen, die nicht direkt im Fließtext sein sollen. Also weniger relevante Informationen, oder Abbildungen, von denen im Text nur ein Ausschnitt verwendet wird. Auch ganzer Code oder eine Erklärung von dessen Architektur passen gut in den Anhang.
 #figure(caption: [_Anhang_ anfügen])[
   ```typst
-  misc_pages: (
+  misc-pages: (
     appendix: #include "chapters/appendix.typ"
   )
   ```]
@@ -212,12 +214,7 @@ Es stehen zwei Tabellentypen zur Verfügung. Standardmäßig wird das Styling `t
   caption: "Alltag eines Programmierers",
   table(
     columns: 4,
-    table.header(
-      [Zeit],
-      [Dauer],
-      [Aufgabe],
-      [Anforderungen],
-    ),
+    table.header([Zeit], [Dauer], [Aufgabe], [Anforderungen]),
 
     [9:00 Uhr], [30 Minuten], [Kaffeepause], [Kaffee, Kaffeemaschine],
     [9:30 Uhr], [30 Minuten], [E-Mails lesen], [Computer],
@@ -237,14 +234,7 @@ Der zweite Tabellenstil kann mit `tables.xy-header*`verwendet werden. Er besitzt
   tables.xy-header(
     table(
       columns: 6,
-      table.header(
-        [ ],
-        [A],
-        [B],
-        [C],
-        [D],
-        [E],
-      ),
+      table.header([ ], [A], [B], [C], [D], [E]),
 
       [1], [🌊], [🚢], [🌊], [💥], [🌊],
       [2], [🚢], [💥], [🌊], [🌊], [🌊],
@@ -277,10 +267,10 @@ Die beiden Farben der Karte können einfach angepasst werden:
 )
 
 === Einheiten
-Eine Einheit wie #define_unit("a", $"ms"^(-2)$, "Beschleunigung", "Vektorgröße") kann einfach definiert werden. Mit #unit("a") ist ein Verweis darauf möglich.
+Eine Einheit wie #define-unit("a", $"ms"^(-2)$, "Beschleunigung", "Vektorgröße") kann einfach definiert werden. Mit #unit("a") ist ein Verweis darauf möglich.
 
 === Abkürzungen
-Ähnlich den Einheiten können auch Abkürzungen definiert werden. Die Abkürzung #define_abbreviation("TH", "Technische Hochschule") verweißt dabei auf den dazugehörigen Eintrag im Abkürzungsverzeichnis, der automatisch erstellt wird. Wie bei der Einheit kann überall im Text erneut auf #abbreviation("TH") verwiesen werden, wobei sich bei häufigem Nutzen von Verweisen ein automatisches Ersetzen im Text oder wenigstens das Importieren der Funktion unter einem Alias, um nicht jeden mal ```#abbreviation("TH")``` tippen zu müssen, anbietet.
+Ähnlich den Einheiten können auch Abkürzungen definiert werden. Die Abkürzung #define-abbreviation("TH", "Technische Hochschule") verweißt dabei auf den dazugehörigen Eintrag im Abkürzungsverzeichnis, der automatisch erstellt wird. Wie bei der Einheit kann überall im Text erneut auf #abbreviation("TH") verwiesen werden, wobei sich bei häufigem Nutzen von Verweisen ein automatisches Ersetzen im Text oder wenigstens das Importieren der Funktion unter einem Alias, um nicht jeden mal ```#abbreviation("TH")``` tippen zu müssen, anbietet.
 
 === Abbildung
 Auch wenn dies kein spezielles Element dieser Vorlage ist, sondern direkt von Typst stammt, folgt hier eine Abbildung, um die Liste der häufig genutzten Figurentypen zu vervollständigen und das Generieren des Abblidungsverzeichnisses auszulösen.
@@ -297,12 +287,12 @@ Um das zu verhindern, gibt es das *todo*-Element.
 Wickle einfach #todo[beliebiger Text] in ein todo und füge optional mit #todo(info: "Hinweis")[Notiz] eine zusätzliche Bemerkung hinzu, die darüber erscheint.
 Todos sind nicht nur mit einem roten Hintergrund markiert, sondern werden auch in einem eigenen Todo-Verzeichnis nach dem Haupttext aufgelistet.
 
-== Verschiedene Sprachen <translation_de>
+== Verschiedene Sprachen <translation-de>
 Dieses Template hat etliche statische Textelemente. Darunter zählen zum Beispiel alle Überschriften, die nicht Teil der Arbeit selbst sind. Damit das Template trotzdem mehrere Sprachen unterstützt wurde sich hier eines programmatisch eher unkonventionellen Tricks bedient: In `/utils/translations.json` sind alle statischen Textblöcke definiert und übersetzt. Die scheint vor allem für Programmierer als eine schlechte Lösung, da die Übersetzungen den Klartext direkt als Schlüssel nutzen, anstatt eines passenden Variablennamens. Jedoch verbessert dies die Lesbarkeit des Code ungemein, da er so auch direkt den Klartext (auf Englisch) enthalten kann.
 Um eine neue Sprache hinzuzufügen ist keinerlei Programmierkenntnis von nöten. Dazu können einfach in `/utils/translations.json` im Ordner, in dem das Template gespeichert ist, Übersetzungen für eine weitere Sprache in jede benötigte Zeile eingefügt werden. Danach können entweder einzelne Seite wie die Bibliographische Beschreibung, oder gleich die ganze Thesis in der Sprache verwendet werden. Wie bei der Konfiguration gibt auch die Übersetzungsfunktion entsprechende Fehler aus, wenn eine Übersetzung für die gewünschte Sprache fehlt. Darum ist es auch möglich, nur die jeweils fehlenden Zeilen zu ergänzen, anstatt alles zu Übersetzen.
 Beispielsweise kann die Zeile `"Signature": {"de": "Unterschrift"}` zu `"Signature": {"de": "Unterschrift", "eo": "Subskribo"}` ergänzt werden, um übersetzung für die Sprache Esperanto verfügbar zu machen.
 
-== Beitrag zum Template 
+== Beitrag zum Template
 Dieses Temaplte entstand aus Frustration mit dem Boilerplate, was sich LaTeX nennt, und auch aus Neugier für die neue Alternative Typst. Es war ursprünglich gar nicht als Template gedacht, sondern entstand im Rahmen einer Belegarbeit von mir (dem Autor), um vor der eigentlichen Arbeit zu prokrastinieren. Darum wurden features auch primär hinzugefügt, wenn sie mir (wieder der Autor) gefehlt haben. Sollte dir also ein Feature fehlen, oder solltest du sogar meine Beispiel folgen wollen, selbst das Template mit weiterem Prokrastinationscode zu verbessern, so kannst du gern jederzeit eine Nachricht schreiben oder sogar direkt eine push-request zum git-repository anfragen. Natürlich gilt dies nicht nur für den Code vom Template, sondern auch für diese Anleitung. #linebreak()
 *Danke, dass du dieses Template nutzt!*
 #h(10pt) - #link("mailto:carl+thtemplate@bellgardt.dev", [_Carl Heinrich Bellgardt_])

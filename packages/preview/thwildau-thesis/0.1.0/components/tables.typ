@@ -1,4 +1,4 @@
-#import "th-color.typ": th-color
+#import "th_color.typ": th-color
 
 #let frame() = (x, y) => (
   left: none,

@@ -1,6 +1,6 @@
 #let units-state = state("units", (:))
 
-#let define_unit(symbol, unit, name, description) = {
+#let define-unit(symbol, unit, name, description) = {
   // TODO: duplicates error handling
   let id = str("unit-" + symbol)
   // Store full info in state

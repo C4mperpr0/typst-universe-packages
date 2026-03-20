@@ -1,6 +1,6 @@
 #import "../utils/translation.typ": translation
 
-#let make_company_confirmation() = {
+#let make-company-confirmation() = {
   pagebreak(weak: true)
 
   // Confirmation by the internship company

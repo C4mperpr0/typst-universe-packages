@@ -1,26 +1,26 @@
 #import "../utils/translation.typ": translation
-#import "../utils/user_input.typ": user_input
+#import "../utils/user_input.typ": user-input
 
-#let make_titlepage_internship(
+#let make-titlepage-internship(
   title: none,
   student: none,
   supervisor: none,
   internship: none,
 ) = {
   // check user input
-  user_input(title, "title", "My thesis")
-  user_input(student, "student", (
+  user-input(title, "title", "My thesis")
+  user-input(student, "student", (
     name: "Clara Fall",
     matrnr: "12345678",
     subject: "Telematics",
-    seminar_group: "T23",
+    seminar-group: "T23",
     semester: "4",
   ))
-  user_input(supervisor, "supervisor", (
+  user-input(supervisor, "supervisor", (
     name: "Frau Dr. Lieschen Müller",
     mail: "mueller@example.com",
   ))
-  user_input(internship, "internship", (
+  user-input(internship, "internship", (
     type: "3rd Internship",
     partner: [Beispiel AG \ Straßenweg 1 \ 12345 Musterstadt \ #link("https://example.com")],
     period: "16.06.2025 to 25.07.2025",
@@ -48,7 +48,7 @@
       row-gutter: 1.6em,
 
       translation("Created by") + ":", student.name + linebreak() + student.matrnr,
-      translation("Seminar group") + ":", student.seminar_group,
+      translation("Seminar group") + ":", student.seminar-group,
       translation("Semester") + ":", student.semester,
       translation("Type of internship") + ":", internship.type,
       translation("Company") + ":", internship.partner,
@@ -58,9 +58,9 @@
   )
 }
 
-#let make_titlepage_content(
-  page_content: none,
+#let make-titlepage-content(
+  page-content: none,
 ) = {
-  user_input(page_content, "titlepage.content", "[My Titlepage]")
-  page_content
+  user-input(page-content, "titlepage.content", "[My Titlepage]")
+  page-content
 }

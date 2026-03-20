@@ -1,5 +1,5 @@
 #import "@preview/thwildau-thesis:0.1.0": (
-  abbreviation, conf, define_abbreviation, define_unit, infocard, tables, th-color, todo, unit,
+  abbreviation, conf, define-abbreviation, define-unit, infocard, tables, th-color, todo, unit,
 ) // TH-Wildau template
 
 // template configuration
@@ -10,7 +10,7 @@
     name: "Carl Heinrich Bellgardt",
     matrnr: "12345678",
     subject: "Praxisintegrierender Bachelor Studiengang Telematik",
-    seminar_group: "T23",
+    seminar-group: "T23",
     semester: "5",
   ),
   supervisor: (
@@ -24,26 +24,26 @@
   ),
   bibliography: bibliography("bib.yaml", style: "institute-of-electrical-and-electronics-engineers"),
   language: "de",
-  misc_pages: (
-    bibliographic_description: (
+  misc-pages: (
+    bibliographic-description: (
       de: (
-        title_long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
+        title-long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
         metadata: " ",
         keywords: "Typst, Thesis, Template, TH-Wildau",
         goal: [Erstellung eines neue Typst Projektes mit dem TH-Wildau Template.],
         abstract: [In dieser Arbeit wird erklärt, wie das darin verwendete Typst-Template konfiguriert und angewendet werden kann.],
       ),
       en: (
-        title_long: "TH-Wildau Typst template for thesis and intership.",
+        title-long: "TH-Wildau Typst template for thesis and intership.",
         metadata: " ",
         keywords: "Typst, Thesis, Template, TH-Wildau",
         goal: [Creation of a new typst project with the TH-Wildau template.],
         abstract: [This thesis aims to explain the process of installing, configuring and applying the TH-Wildau typst template.],
       ),
     ),
-    reading_guides: [Für diese Arbeit ist grundlegendes Wissen über die Sprache Typst von Vorteil.#linebreak() For this template it is advised to first understand the basic concepts of the typst language.],
-    authorship_declaration: true,
-    company_confirmation: true,
+    reading-guides: [Für diese Arbeit ist grundlegendes Wissen über die Sprache Typst von Vorteil.#linebreak() For this template it is advised to first understand the basic concepts of the typst language.],
+    authorship-declaration: true,
+    company-confirmation: true,
     glossary: (("Telematik", "Die Kombination aus Telekommunikation und Informatik"),),
     appendix: include "chapters/appendix.typ",
   ),

@@ -2,7 +2,7 @@
 #import "../components/tables.typ": x-header
 #import "../utils/translation.typ": translation
 
-#let make_abbreviation_register() = {
+#let make-abbreviation-register() = {
   context {
     let items = abbr-state.final()
     if items.len() > 0 {

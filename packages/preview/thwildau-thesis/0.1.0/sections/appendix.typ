@@ -1,6 +1,6 @@
 #import "../utils/translation.typ": translation
 
-#let make_appendix(appendix) = {
+#let make-appendix(appendix) = {
   pagebreak(weak: true)
 
   set heading(numbering: "A")

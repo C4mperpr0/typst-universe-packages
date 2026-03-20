@@ -1,6 +1,6 @@
 #let abbr-state = state("abbreviations", (:))
 
-#let define_abbreviation(abbreviation, description) = {
+#let define-abbreviation(abbreviation, description) = {
   // TODO: duplicates error handling
   let id = str("abbr-" + abbreviation)
   // Store full info in state
