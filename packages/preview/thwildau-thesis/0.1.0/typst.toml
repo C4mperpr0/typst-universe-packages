@@ -21,7 +21,7 @@ keywords = [
   "Telematics",
 ]
 categories = ["thesis", "report"]
-exclude = ["/template/main.pdf"]
+exclude = []
 
 [template]
 path = "template"
