@@ -1,0 +1,21 @@
+#let units-state = state("units", (:))
+
+#let define_unit(symbol, unit, name, description) = {
+  // TODO: duplicates error handling
+  let id = str("unit-" + symbol)
+  // Store full info in state
+  context {
+    units-state.update(units-state.get() + (str(id): (symbol, unit, name, description)))
+  }
+  // Create link to later entry
+  show link: set text(fill: black)
+  link(label(id))[#emph[#symbol]]
+}
+
+#let unit(symbol) = {
+  // TODO: make this work with either symbol or name. Error handling
+  let id = str("unit-" + symbol)
+  show link: set text(fill: black)
+
+  link(label(id))[#emph[#symbol]]
+}
