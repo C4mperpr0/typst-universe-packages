@@ -27,7 +27,7 @@
   misc-pages: (
     bibliographic-description: (
       de: (
-        title-long: "TH-Wildau Typst Tempalte für Thesis und Praktikumsbericht",
+        title-long: "TH-Wildau Typst Template für Thesis und Praktikumsbericht",
         metadata: " ",
         keywords: "Typst, Thesis, Template, TH-Wildau",
         goal: [Erstellung eines neue Typst Projektes mit dem TH-Wildau Template.],
