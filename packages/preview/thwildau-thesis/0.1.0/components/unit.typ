@@ -4,9 +4,7 @@
   // TODO: duplicates error handling
   let id = str("unit-" + symbol)
   // Store full info in state
-  context {
-    units-state.update(units-state.get() + (str(id): (symbol, unit, name, description)))
-  }
+  units-state.update(state => state + (str(id): (symbol, unit, name, description)))
   // Create link to later entry
   show link: set text(fill: black)
   link(label(id))[#emph[#symbol]]
