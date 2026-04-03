@@ -269,3 +269,6 @@ Für geringe Typst-Vorkenntnisse konzipiert, mit Fokus auf Automatisierung und K
 ## Mitwirken
 
 Beiträge und Feature-Wünsche sind willkommen.
+
+## Logo License
+Das TH-Wildau Logo, welches von diesem Template verwendet und unter assets/TH-Wildau-Logo_rgb.png gespeichert wird, darf nach der CC BY-SA 4.0 License verwendet werden. Es wurde unter https://en.wikipedia.org/wiki/Technical_University_of_Applied_Sciences_Wildau#/media/File:TH_Wildau_Logo.png abgerufen.
